@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width:900px;">
+
+  <!-- ── Page Header ──────────────────────────────────────── -->
+  <div class="page-header">
+    <span class="section-label">
+      <i class="bi bi-info-circle-fill"></i> About the Project
+    </span>
+    <h1 class="page-title">InkCheck — AI Verification</h1>
+    <p class="page-desc">
+      A final-year graduation project using convolutional neural networks to detect
+      genuine and forged handwritten signatures with high accuracy.
+    </p>
+  </div>
+
+  <!-- ── Hero Section ─────────────────────────────────────── -->
+  <div class="card-pro about-hero">
+    <div class="about-hero-inner">
+
+      <div class="about-lottie">
+        <dotlottie-wc
+          src="https://lottie.host/a5b3bd8b-bbb5-44db-8887-72fd85f7ceee/rPJmaCbjKp.lottie"
+          style="width: 160px;height: 160px"
+          autoplay
+          loop
+        ></dotlottie-wc>
+      </div>
+
+      <div class="about-hero-text">
+        <h2 class="about-hero-title">What is InkCheck?</h2>
+        <p class="about-hero-desc">
+          InkCheck is an intelligent web-based signature verification system that uses
+          a trained <strong>Convolutional Neural Network (CNN)</strong> model to classify
+          uploaded signature images as either <span style="color:var(--success);font-weight:700;">Genuine</span>
+          or <span style="color:var(--danger);font-weight:700;">Forged</span>.
+        </p>
+        <p class="about-hero-desc">
+          The system is built with <strong>Flask</strong> for the backend, <strong>TensorFlow/Keras</strong>
+          for the deep learning model, and <strong>OpenCV</strong> for image preprocessing — wrapped in a
+          modern, professional frontend interface.
+        </p>
+        <div class="about-badges">
+          <span class="about-badge"><i class="bi bi-mortarboard-fill me-1"></i>Final Year Project</span>
+          <span class="about-badge"><i class="bi bi-journal-text me-1"></i>Academic Research</span>
+          <span class="about-badge"><i class="bi bi-shield-check-fill me-1"></i>Signature Security</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── How the Model Works ──────────────────────────────── -->
+  <div class="about-section">
+    <h2 class="about-section-title">
+      <i class="bi bi-cpu-fill me-2" style="color:var(--primary);"></i>How the CNN Model Works
+    </h2>
+    <div class="about-steps">
+
+      <div class="about-step">
+        <div class="about-step-num">1</div>
+        <div>
+          <div class="about-step-title">Image Upload &amp; Preprocessing</div>
+          <div class="about-step-desc">The uploaded signature image is read using OpenCV, converted to RGB colour space, resized to <code>64×64</code> pixels, and normalized to a 0–1 floating point scale to match the exact training pipeline.</div>
+        </div>
+      </div>
+
+      <div class="about-step">
+        <div class="about-step-num">2</div>
+        <div>
+          <div class="about-step-title">CNN Feature Extraction</div>
+          <div class="about-step-desc">The preprocessed image is passed through multiple convolutional and pooling layers that extract spatial features such as stroke curvature, pressure patterns, loop geometry, and ink distribution across the signature.</div>
+        </div>
+      </div>
+
+      <div class="about-step">
+        <div class="about-step-num">3</div>
+        <div>
+          <div class="about-step-title">Classification &amp; Confidence Scoring</div>
+          <div class="about-step-desc">The final dense layers output a single sigmoid probability score. Scores above <code>0.5</code> are classified as <strong>Genuine</strong>; scores at or below <code>0.5</code> are classified as <strong>Forgery</strong>. The confidence percentage is derived from this score.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Tech Stack ────────────────────────────────────────── -->
+  <div class="about-section">
+    <h2 class="about-section-title">
+      <i class="bi bi-stack me-2" style="color:var(--primary);"></i>Technology Stack
+    </h2>
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(37,99,235,0.10);">
+          <i class="bi bi-filetype-py" style="color:#2563eb; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">Python 3</div>
+        <div class="tech-card-desc">Core programming language for backend, ML, and preprocessing logic.</div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(14,165,233,0.10);">
+          <i class="bi bi-braces" style="color:#0ea5e9; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">Flask</div>
+        <div class="tech-card-desc">Lightweight web framework powering all routes, authentication, and file handling.</div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(220,38,38,0.10);">
+          <i class="bi bi-diagram-3-fill" style="color:#dc2626; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">TensorFlow / Keras</div>
+        <div class="tech-card-desc">Deep learning framework used to build, train, and run the CNN model.</div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(5,150,105,0.10);">
+          <i class="bi bi-image-fill" style="color:#059669; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">OpenCV</div>
+        <div class="tech-card-desc">Image reading, color conversion, resizing, and pixel normalization pipeline.</div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(124,58,237,0.10);">
+          <i class="bi bi-database-fill" style="color:#7c3aed; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">SQLite + SQLAlchemy</div>
+        <div class="tech-card-desc">Relational database for user accounts with ORM-based access.</div>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-card-icon" style="background:rgba(217,119,6,0.10);">
+          <i class="bi bi-shield-lock-fill" style="color:#d97706; font-size:1.5rem;"></i>
+        </div>
+        <div class="tech-card-name">Flask-Login + Bcrypt</div>
+        <div class="tech-card-desc">Secure session-based authentication with bcrypt password hashing.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Key Stats ─────────────────────────────────────────── -->
+  <div class="about-section">
+    <h2 class="about-section-title">
+      <i class="bi bi-bar-chart-fill me-2" style="color:var(--primary);"></i>Project Highlights
+    </h2>
+    <div class="about-stats">
+      <div class="about-stat-card">
+        <div class="about-stat-val">CNN</div>
+        <div class="about-stat-lbl">Model Architecture</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-val">64×64</div>
+        <div class="about-stat-lbl">Input Image Size</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-val">RGB</div>
+        <div class="about-stat-lbl">Color Space</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-val">Sigmoid</div>
+        <div class="about-stat-lbl">Output Activation</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-val">Binary</div>
+        <div class="about-stat-lbl">Classification</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="about-stat-val">2025-26</div>
+        <div class="about-stat-lbl">Academic Year</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

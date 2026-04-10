@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container auth-container">
+
+  <div class="text-center mb-4" style="animation:cardUp .45s ease both;">
+    <span class="section-label">
+      <i class="bi bi-person-plus-fill"></i> Create Account
+    </span>
+  </div>
+
+  <div class="card-pro auth-card" style="animation-delay:.08s;">
+
+    <div class="auth-header">
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-sub">Join InkCheck to start verifying signatures</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-list">
+          {% for category, message in messages %}
+            <div class="flash-alert {{ category }}">
+              <i class="bi bi-info-circle-fill"></i>
+              <span>{{ message }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/register" method="POST" class="auth-form">
+
+      <div class="field-group">
+        <label class="field-label">Username</label>
+        <div class="field-wrap">
+          <span class="field-icon"><i class="bi bi-person-fill"></i></span>
+          <input type="text" name="username" class="field-input"
+                 placeholder="Choose username" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <div class="field-wrap">
+          <span class="field-icon"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" name="password"
+                 class="field-input" placeholder="Enter password" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Confirm Password</label>
+        <div class="field-wrap">
+          <span class="field-icon"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" name="confirm_password"
+                 class="field-input" placeholder="Confirm password" required>
+        </div>
+      </div>
+
+      <div class="form-action">
+        <button type="submit" class="btn-analyze">
+          <i class="bi bi-person-check-fill"></i>
+          Create Account
+        </button>
+      </div>
+
+    </form>
+
+    <div class="auth-footer-link">
+      Already have an account? <a href="/login">Login →</a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

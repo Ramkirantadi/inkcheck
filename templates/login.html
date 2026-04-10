@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container auth-container">
+
+  <div class="text-center mb-4" style="animation:cardUp .45s ease both;">
+    <span class="section-label">
+      <i class="bi bi-lock-fill"></i> Secure Access
+    </span>
+  </div>
+
+  <div class="card-pro auth-card" style="animation-delay:.08s;">
+
+    <div class="auth-header">
+
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-sub">Sign in to access the verification portal</p>
+
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-list">
+          {% for category, message in messages %}
+            {% if 'logged out' not in message|lower
+               and 'log out'   not in message|lower
+               and 'signed out' not in message|lower %}
+              <div class="flash-alert {{ category }}">
+                <i class="bi bi-{% if category == 'success' %}check-circle-fill{% elif category == 'danger' %}exclamation-circle-fill{% elif category == 'warning' %}exclamation-triangle-fill{% else %}info-circle-fill{% endif %}"></i>
+                <span>{{ message }}</span>
+                <button class="flash-close" type="button">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/login" method="POST" autocomplete="off" class="auth-form">
+
+      <div class="field-group">
+        <label class="field-label" for="username">Username</label>
+        <div class="field-wrap">
+          <span class="field-icon"><i class="bi bi-person-fill"></i></span>
+          <input type="text" id="username" name="username"
+                 class="field-input" placeholder="Enter your username"
+                 required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <div class="field-wrap">
+          <span class="field-icon"><i class="bi bi-lock-fill"></i></span>
+          <input type="password" id="password" name="password"
+                 class="field-input has-toggle"
+                 placeholder="Enter your password" required>
+        </div>
+      </div>
+
+      <div class="form-action mt-2">
+        <button type="submit" class="btn-analyze">
+          <i class="bi bi-box-arrow-in-right"></i>
+          Sign In to Portal
+        </button>
+      </div>
+
+    </form>
+
+    <div class="auth-footer-link">
+      Don't have an account? <a href="/register">Create one here →</a>
+    </div>
+
+  </div>
+
+  <p class="auth-security-note">
+    <i class="bi bi-shield-lock"></i>
+    Bcrypt hashed · Session protected · SQLite secured
+  </p>
+
+</div>
+{% endblock %}

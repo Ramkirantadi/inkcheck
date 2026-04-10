@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width:860px;">
+
+  <div class="text-center mb-4">
+    <span class="section-label"><i class="bi bi-activity"></i> Analysis Complete</span>
+  </div>
+
+  <div class="card-pro result-card">
+
+    <div class="result-layout">
+
+      <!-- Left: Signature image -->
+      <div class="result-image-col">
+        <p class="result-img-label">Analyzed Signature</p>
+        <div class="result-img-frame {{ 'frame-genuine' if result == 'Genuine' else 'frame-forgery' }}">
+          <img src="{{ url_for('static', filename='uploads/' + image_url) }}"
+               alt="Analyzed Signature" class="result-img">
+          <div class="scan-overlay"></div>
+        </div>
+        <p class="result-img-filename">
+          <i class="bi bi-image me-1"></i>{{ image_url }}
+        </p>
+      </div>
+
+      <!-- Right: Verdict -->
+      <div class="result-verdict-col">
+
+        <div class="verdict-lottie">
+
+          {% if result == 'Genuine' %}
+
+            <!-- Genuine Animation -->
+            <lottie-player
+              src="https://assets4.lottiefiles.com/packages/lf20_lk80fpsm.json"
+              background="transparent"
+              speed="1"
+              style="width:120px;height:120px;"
+              autoplay>
+            </lottie-player>
+
+          {% else %}
+
+            <!-- Cross Mark Forgery Animation -->
+            <dotlottie-wc
+              src="https://lottie.host/a1423ba4-041b-4912-a830-d6ffb869e40d/W9ACAD7osf.lottie"
+              style="width:120px;height:120px;"
+              autoplay>
+            </dotlottie-wc>
+
+          {% endif %}
+
+        </div>
+
+        <div class="verdict-pill {{ 'pill-genuine' if result == 'Genuine' else 'pill-forgery' }}">
+          {% if result == 'Genuine' %}
+            <i class="bi bi-check-circle-fill"></i> Verified Genuine
+          {% else %}
+            <i class="bi bi-x-circle-fill"></i> Forgery Detected
+          {% endif %}
+        </div>
+
+        <h2 class="verdict-heading {{ 'heading-genuine' if result == 'Genuine' else 'heading-forgery' }}">
+          {% if result == 'Genuine' %}Genuine Signature{% else %}Signature Forgery{% endif %}
+        </h2>
+
+        <p class="verdict-desc">
+          {% if result == 'Genuine' %}
+            The CNN model classified this signature as <strong>authentic</strong>. Stroke patterns and ink distribution are consistent with genuine characteristics.
+          {% else %}
+            The CNN model flagged this as a <strong>potential forgery</strong>. Stroke inconsistencies and pattern deviations were detected during inference.
+          {% endif %}
+        </p>
+
+        <div class="conf-box">
+          <div class="conf-row">
+            <span class="conf-label"><i class="bi bi-speedometer2 me-1"></i>Model Confidence</span>
+            <span class="conf-value" id="confCount" data-target="{{ confidence }}">0.0%</span>
+          </div>
+          <div class="conf-track">
+            <div class="conf-fill {{ 'fill-genuine' if result == 'Genuine' else 'fill-forgery' }}"
+                 id="confFill" data-width="{{ confidence }}"></div>
+          </div>
+          <div class="conf-scale"><span>0%</span><span>100%</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="result-divider"></div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <i class="bi bi-cpu-fill stat-icon" style="color:var(--primary);"></i>
+        <span class="stat-val">CNN</span>
+        <span class="stat-lbl">Model Type</span>
+      </div>
+
+      <div class="stat-box">
+        <i class="bi bi-aspect-ratio-fill stat-icon" style="color:var(--accent);"></i>
+        <span class="stat-val">64×64</span>
+        <span class="stat-lbl">Input Size</span>
+      </div>
+
+      <div class="stat-box">
+        <i class="bi bi-graph-up-arrow stat-icon"
+           style="color:{{ 'var(--success)' if result == 'Genuine' else 'var(--danger)' }};"></i>
+        <span class="stat-val" style="color:{{ 'var(--success)' if result == 'Genuine' else 'var(--danger)' }};">
+          {{ confidence }}%
+        </span>
+        <span class="stat-lbl">Confidence</span>
+      </div>
+    </div>
+
+    <div class="tech-details">
+      <div class="tech-item">
+        <span class="tech-label">Algorithm</span>
+        <span class="tech-val">Deep Learning</span>
+      </div>
+
+      <div class="tech-divider"></div>
+
+      <div class="tech-item">
+        <span class="tech-label">Normalization</span>
+        <span class="tech-val">0–1 Pixel Scale</span>
+      </div>
+
+      <div class="tech-divider"></div>
+
+      <div class="tech-item">
+        <span class="tech-label">Color Space</span>
+        <span class="tech-val">RGB</span>
+      </div>
+
+      <div class="tech-divider"></div>
+
+      <div class="tech-item">
+        <span class="tech-label">Verdict</span>
+        <span class="tech-val"
+              style="color:{{ 'var(--success)' if result == 'Genuine' else 'var(--danger)' }};font-weight:700;">
+          {{ result | upper }}
+        </span>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <a href="/" class="btn-analyze btn-analyze-sm">
+        <i class="bi bi-arrow-left"></i> Analyze Another
+      </a>
+
+      <button onclick="window.print()" class="btn-outline-pro">
+        <i class="bi bi-printer-fill"></i> Print Report
+      </button>
+    </div>
+
+  </div>
+
+  <p class="result-disclaimer">
+    <i class="bi bi-info-circle me-1"></i>
+    AI-based analysis · For research & educational purposes only
+  </p>
+
+</div>
+{% endblock %}

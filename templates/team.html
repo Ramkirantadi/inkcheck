@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width:960px;">
+
+  <div class="page-header">
+    <span class="section-label">
+      <i class="bi bi-people-fill"></i> Meet the Team
+    </span>
+    <h1 class="page-title">Our Development Team</h1>
+    <p class="page-desc">
+      The minds behind InkCheck — a final-year engineering project dedicated to
+      intelligent signature verification using deep learning.
+    </p>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- Member 1 -->
+    <div class="team-card" style="animation-delay:.08s;">
+      <div class="team-avatar-wrap">
+
+        <div class="team-avatar">
+          <img src="{{ url_for('static', filename='team/vishnu.jpeg') }}" alt="Boddu Sri Vishnu">
+        </div>
+
+        <div class="team-avatar-ring"></div>
+      </div>
+
+      <div class="team-info">
+        <h3 class="team-name">Boddu Sri Vishnu</h3>
+        <span class="team-role role-lead">
+          <i class="bi bi-star-fill"></i> Team Lead 
+        </span>
+
+        <p class="team-bio">
+          Responsible for designing and training the CNN model, data preprocessing pipeline, and overall project architecture.
+        </p>
+
+        <div class="team-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">CNN</span>
+          <span class="skill-tag">OpenCV</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member 2 -->
+    <div class="team-card" style="animation-delay:.16s;">
+      <div class="team-avatar-wrap">
+
+        <div class="team-avatar">
+          <img src="{{ url_for('static', filename='team/ram.jpeg') }}" alt="Tadi Ram Kiran">
+        </div>
+
+        <div class="team-avatar-ring"></div>
+      </div>
+
+      <div class="team-info">
+        <h3 class="team-name">Tadi Ram Kiran</h3>
+        <span class="team-role role-backend">
+          <i class="bi bi-server"></i> Backend Developer
+        </span>
+
+        <p class="team-bio">
+          Built the Flask web application, authentication system, database schema, and API routing.
+        </p>
+
+        <div class="team-skills">
+          <span class="skill-tag">Flask</span>
+          <span class="skill-tag">SQLAlchemy</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQLite</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member 3 -->
+    <div class="team-card" style="animation-delay:.24s;">
+      <div class="team-avatar-wrap">
+
+        <div class="team-avatar">
+          <img src="{{ url_for('static', filename='team/rahena.jpeg') }}" alt="Bantumilli Rahena">
+        </div>
+
+        <div class="team-avatar-ring"></div>
+      </div>
+
+      <div class="team-info">
+        <h3 class="team-name">Bantumilli Rahena</h3>
+        <span class="team-role role-frontend">
+          <i class="bi bi-palette-fill"></i> UI/UX Developer
+        </span>
+
+        <p class="team-bio">
+          Designed responsive layouts, animations, and UI components across the platform.
+        </p>
+
+        <div class="team-skills">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member 4 -->
+    <div class="team-card" style="animation-delay:.32s;">
+      <div class="team-avatar-wrap">
+
+        <div class="team-avatar">
+          <img src="{{ url_for('static', filename='team/yogesh.jpeg') }}" alt="Gopisetti Yogesh">
+        </div>
+
+        <div class="team-avatar-ring"></div>
+      </div>
+
+      <div class="team-info">
+        <h3 class="team-name">Gopisetti Yogesh</h3>
+        <span class="team-role role-research">
+          <i class="bi bi-journal-text"></i> Tester
+        </span>
+
+        <p class="team-bio">
+          Managed dataset preparation, literature review, and model evaluation.
+        </p>
+
+        <div class="team-skills">
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Research</span>
+          <span class="skill-tag">Testing</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
